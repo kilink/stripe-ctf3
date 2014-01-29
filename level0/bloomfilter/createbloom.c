@@ -18,8 +18,9 @@ int main (int argc, char **argv) {
     params.fp_probability = 0.0001f;
     bf_params_for_capacity(&params);
 
-    if(bitmap_from_filename("bloombitmap.dat", params.bytes, 1, PERSISTENT | NEW_BITMAP,
-                &bitmap) == -1) {
+    if(bitmap_from_filename("bloombitmap.dat", params.bytes, 1,
+                            PERSISTENT | NEW_BITMAP,
+                            &bitmap) == -1) {
         perror("bitmap_from_filename: ");
         exit(-1);
     }
