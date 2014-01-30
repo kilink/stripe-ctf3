@@ -19,33 +19,18 @@ def trigrams(s, max=3):
 
 class Index(object):
 
-    _id = 0
+    Documents = None
 
     def __init__(self, shard_id=0, num_shards=3):
         self.shard_id = shard_id
         self.num_shards = num_shards
-        self.doc_to_id = {}
-        self.id_to_doc = {}
         self.linecache = {}
         self.trigram_to_docs = {}
 
     def clear(self):
-        self.doc_to_id.clear()
-        self.id_to_doc.clear()
         self.linecache.clear()
         self.trigram_to_docs.clear()
-        self._id = 0
-
-    def doc_id(self, doc):
-        docid = self.doc_to_id.get(doc)
-        if docid is None:
-            self.doc_to_id[doc] = docid = self._id
-            self.id_to_doc[self._id] = doc
-            self._id += 1
-        return docid
-
-    def id_doc(self, docid):
-        return self.id_to_doc.get(docid)
+        self.Documents = None
 
     def construct_bitset(self, path):
         paths = []
